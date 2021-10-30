@@ -23,7 +23,7 @@ const universityModel = new mongoose.Schema(
 			required: true
 		},
 		tuition: {
-			type: String,
+			type: Number,
 			trim: true,
 			required: true
 		}

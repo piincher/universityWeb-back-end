@@ -12,7 +12,6 @@ const register = async (req, res) => {
 	try {
 		university.save();
 		res.json({ success: 'new university create' });
-		console.log(name, program, length, description, tuition);
 	} catch (error) {
 		console.log(error);
 		res.status(400).send('try again');
@@ -23,4 +22,9 @@ const getUniversities = async (req, res) => {
 	const universities = await University.find({});
 	res.json(universities);
 };
-export { register, getUniversities };
+
+const getSingle = async (req, res) => {
+	const university = await University.findById(req.params._id);
+	res.json(university);
+};
+export { register, getUniversities, getSingle };

@@ -1,8 +1,9 @@
 import express from 'express';
-import { register, getUniversities } from '../controllers/university';
+import { register, getUniversities, getSingle } from '../controllers/university';
 const router = express.Router();
 
 router.post('/register', register);
-router.get('/universities', getUniversities);
+router.get('/', getUniversities);
+router.get('/edit/:_id', getSingle);
 
 module.exports = router;

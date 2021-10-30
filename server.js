@@ -10,9 +10,6 @@ connectDB();
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.get('/', (req, res) => {
-	res.send('hello to front  ');
-});
 
 readdirSync('./routes').map((r) => app.use('/api', require(`./routes/${r}`)));
 

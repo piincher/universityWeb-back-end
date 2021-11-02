@@ -1,6 +1,7 @@
 {
 	"name": "server",
 	"version": "1.0.0",
+	"proxy": "https://universityback-end.herokuapp.com",
 	"description": "",
 	"main": "index.js",
 	"scripts": {

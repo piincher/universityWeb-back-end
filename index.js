@@ -2,12 +2,22 @@ const express = require("express");
 const { sendEmail } = require("./helpers/sendEmail");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const colors = require("colors");
+const Videos = require("./route/videos");
+const Auth = require("./route/user");
+const connectDB = require("./config/db");
+
 dotenv.config();
+connectDB();
+
 const App = express();
 
-App.use(cors());
-App.use(express.json());
+App.use(express.json({ limit: "50mb" }));
 
+App.use(cors());
+
+App.use("/api/v1/user", Auth);
+App.use("/api/v1/video", Videos);
 App.get("/test", (req, res) => {
   res.send("response from axios");
 });

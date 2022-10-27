@@ -22,9 +22,11 @@ exports.uploadMedia = async (req, res) => {
 
 exports.fetchVideos = async (req, res) => {
   try {
-    const Videos = await Video.find({});
+    const Videos = await Video.find()
+      .sort({ createdAt: -1 })
+      .populate("postedBy", "_id name  ");
 
-    res.json({ ok: true, Videos });
+    res.json(Videos);
   } catch (error) {
     console.log("oops! error", error);
   }
@@ -34,7 +36,7 @@ exports.fetchVideo = async (req, res) => {
   try {
     const Video = await Video.find(req.params.id);
 
-    res.json({ ok: true, Video });
+    res.json(Video);
   } catch (error) {
     console.log("oops! error", error);
   }

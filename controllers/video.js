@@ -22,9 +22,14 @@ exports.uploadMedia = async (req, res) => {
 
 exports.fetchVideos = async (req, res) => {
   try {
+    const perPage = 5;
+    const page = req.params.page ? req.params.page : 1;
+
     const Videos = await Video.find()
+      .skip((page - 1) * perPage)
       .sort({ createdAt: -1 })
-      .populate("postedBy", "_id name  ");
+      .populate("postedBy", "_id name  ")
+      .limit(perPage);
 
     res.json(Videos);
   } catch (error) {
